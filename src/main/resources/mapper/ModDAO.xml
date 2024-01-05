@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.situ.lession1226.dao.ModDAO">
+
+    <select id="findAllByUsername" resultType="Mod">
+        SELECT DISTINCT t5.id, t5.name, t5.url
+        from t_security_user t1
+                 INNER JOIN t_security_user_role t2 on t1.id = t2.user_id
+                 INNER JOIN t_security_role_perm t3 on t2.role_id = t3.role_id
+                 INNER JOIN t_security_perm_mod t4 on t3.perm_id = t4.perm_id
+                 INNER JOIN t_security_mod t5 on t4.mod_id = t5.id
+        where username = #{username}
+    </select>
+</mapper>

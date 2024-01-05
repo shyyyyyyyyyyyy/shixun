@@ -1,0 +1,43 @@
+body {
+    margin: 8px;
+}
+
+#document-form input:not([type=radio]), #document-form select {
+    outline: none;
+    border: 1px solid #ccc;
+    padding: 10px 0 10px 8px;
+    width: 300px;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+#document-form input[type=radio] {
+    width: 24px;
+    height: 24px;
+}
+
+#document-form > div {
+    margin-bottom: 10px;
+}
+
+#document-form > div > label:first-child {
+    display: inline-block;
+    text-align: right;
+    width: 100px;
+}
+
+#document-form .sex-wrapper > * {
+    vertical-align: middle;
+}
+
+#document-form .sex-wrapper > input[type=radio] {
+    margin-right: 3px;
+}
+
+#document-form #submit-btn {
+    outline: none;
+    border: 1px solid transparent;
+    padding: 8px 20px;
+    background-color: #1e9fff;
+    color: #fff;
+}
