@@ -8,6 +8,7 @@
     <script th:src="@{/public/lib/jquery/jquery-3.7.1.min.js}"></script>
     <script th:src="@{/public/lib/layui/layui.js}"></script>
     <script th:src="@{/document/add.js}"></script>
+
 </head>
 <body>
 <div>
@@ -18,13 +19,15 @@
         </div>
 
         <div>
-            <label for="content">文件路径：</label>
-            <input type="text" id="content" autocomplete="off" placeholder="请输入文件路径">
+            <div class="layui-btn-container">
+                <button type="button" class="layui-btn layui-btn-normal" id="ID-upload-demo-choose">选择文件</button>
+                <button type="button" class="layui-btn" id="ID-upload-demo-action">开始上传</button>
+            </div>
         </div>
 
         <div>
             <label for="createdBy">创建人：</label>
-            <input type="text" id="createdBy" autocomplete="off" placeholder="请输入拼音">
+            <input type="text" id="createdBy" autocomplete="off" placeholder="请输入创建人">
         </div>
 
         <div th:if="${showSubmit}">
@@ -34,4 +37,22 @@
     </form>
 </div>
 </body>
+
+<script>
+    layui.use(function(){
+        var upload = layui.upload;
+        // 渲染
+        upload.render({
+            elem: '#ID-upload-demo-choose',
+            url: '', // 此处配置你自己的上传接口即可
+            auto: false,
+            // multiple: true,
+            bindAction: '#ID-upload-demo-action',
+            done: function(res){
+                layer.msg('上传成功');
+                console.log(res)
+            }
+        });
+    });
+</script>
 </html>

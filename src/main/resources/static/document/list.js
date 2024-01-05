@@ -72,6 +72,7 @@ $(() => {
                 layer.msg("请选中您要删除的行");
             } else {
                 layer.confirm("是否确认删除所有选中的行?", function () {
+                   // console.log("cnm");
                     //如用户确认，则会执行此中代码
                     deleteByIds(ids);
                 });
@@ -221,8 +222,10 @@ function search(pageNo = 1, pageSize = 15) {
 
 //根据学生主键批量进行删除
 function deleteByIds(ids) {
+    console.log("nnn");
     //使用ajax发出请求，请求后台的微服务
     let url = "/api/v1/documents";
+    console.log("ggg");
     $.ajax({
         url,
         method: "delete",
@@ -232,8 +235,10 @@ function deleteByIds(ids) {
             ids
         },
         success(resp) {
+            console.log("cao");
             search();//刷新表格
             layui.use(() => {
+                console.log("yyy");
                 let layer = layui.layer;
                 layer.msg("删除操作成功，共删除" + resp.rows + "行");
             });

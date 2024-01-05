@@ -64,7 +64,7 @@
     <delete id="deleteByIds">
         delete from file_document where document_id in
         <foreach collection="ids" open="(" close=")" separator="," item="id">
-            #{documentId}
+            #{id}
         </foreach>
     </delete>
 
@@ -84,19 +84,19 @@
         update file_document
         <set>
             <if test="title!=null and title!=''">
-                and title = #{title}
+                title = #{title},
             </if>
             <if test="content!=null and content!=''">
-                and content = #{content}
+                content = #{content},
             </if>
             <if test="createdAt!=null and createdAt!=''">
-                and created_at = #{createdAt}
+                created_at = #{createdAt},
             </if>
             <if test="updatedAt!=null and updatedAt!=''">
-                and updated_at = #{updatedAt}
+                updated_at = #{updatedAt},
             </if>
             <if test="createdBy!=null and createdBy!=''">
-                and created_by = #{createdBy}
+                created_by = #{createdBy},
             </if>
 <!--            <if test="classEntity!=null and classEntity.id!=null">-->
 <!--                class_id = #{classEntity.id}-->

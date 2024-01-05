@@ -49,6 +49,8 @@ public class DocumentServiceImpl implements DocumentService {
 
     @Override
     public int deleteByIds(Integer[] ids) {
+
+        System.out.println("cnm" + documentDAO.deleteByIds(ids));
         return documentDAO.deleteByIds(ids);
     }
 

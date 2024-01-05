@@ -55,6 +55,7 @@ public class DocumentApi {
     @DeleteMapping
     public Map<String, Object> deleteByIds(Integer[] ids) {
         int rows = documentService.deleteByIds(ids);//受影响的行数
+        System.out.println("ids" + rows);
         return Map.of("success", true, "rows", rows);
     }
 
