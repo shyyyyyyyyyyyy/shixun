@@ -18,6 +18,7 @@ $(() => {
 
 //保存学生，cb回调函数
 function save(cb) {
+    let documentId = $("documentId").val();
     let title = $("#title").val();
     let content = $("#content").val();
     let createdBy = $("#createdBy").val();
@@ -28,6 +29,7 @@ function save(cb) {
         method: "post",
         dataType: "json",
         data: {
+            documentId,
             title,
             content,
             createdBy

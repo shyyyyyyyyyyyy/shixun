@@ -184,7 +184,8 @@ function search(pageNo = 1, pageSize = 15) {
 
                 data.forEach(it => {//it即遍历过程中的一个学生对象
                     let $tr = $("<tr>");//创建一个tr对象
-                    $tr.append("<td><input type='checkbox' value='" + it.id + "'></td>");
+                    $tr.append("<td><input type='checkbox' value='" + it.documentId + "'></td>");
+                    $tr.append("<td>" + it.documentId + "</td>");
                     $tr.append("<td>" + it.title + "</td>");
                     $tr.append("<td>" + it.content + "</td>");
                     $tr.append("<td>" + it.createdBy + "</td>");

@@ -6,27 +6,11 @@ $(() => {
         });
     }
 
-    // //对性别进行数据回显，对班级进行回显
-    // if (stu) {
-    //     $(":input[name=sex][value=" + stu.sex + "]").prop("checked", true);
-    //     $("#classId").data("classId", stu.classEntity.id);//缓存班级编号
-    // }
-    //
-    // //出生日期使用下拉选择组件
-    // layui.use(() => {
-    //     let laydate = layui.laydate;
-    //     laydate.render({
-    //         elem: "#birthday"
-    //     });
-    // });
-
-    // //查询班级，添加到下拉
-    // initClassSelect();
 });
 
 //修改学生，cb回调函数
 function edit(cb) {
-    // let documentId = doc.document_id;//主键
+    let documentId = doc.documentId;//主键
     let title = $("#title").val();
     let content = $("#content").val();
     let createdBy = $("#createdBy").val();
@@ -37,8 +21,10 @@ function edit(cb) {
         method: "patch",//部分修改
         dataType: "json",
         data: {
+            documentId,
             title,
-            content, createdBy
+            content,
+            createdBy
         },
         success(resp) {
             if (typeof cb === "function") {

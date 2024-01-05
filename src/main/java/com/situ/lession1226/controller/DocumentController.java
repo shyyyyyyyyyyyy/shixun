@@ -52,7 +52,7 @@ public class DocumentController {
         if (document == null) {
             map.put("error", "要修改的文件不存在");
         } else {
-            map.put("stu", document);
+            map.put("doc", document);
         }
         return "document/edit";
     }
