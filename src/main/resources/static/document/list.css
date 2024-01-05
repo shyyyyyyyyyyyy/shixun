@@ -1,0 +1,180 @@
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgba(50, 50, 50, .3);
+}
+
+::-webkit-scrollbar-track {
+    background-color: rgba(50, 50, 50, .1);
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    padding: 8px;
+}
+
+.data {
+    overflow: scroll;
+    border: 1px solid #ccc;
+}
+
+#tbl {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#tbl tr > td, #tbl tr > th {
+    border: 1px solid #ccc;
+    padding: 6px 10px;
+}
+
+/*为了不和data的边框重叠*/
+#tbl tr > th {
+    border-top: none;
+}
+
+#tbl tr > *:first-child {
+    border-left: none;
+}
+
+#tbl tr > td:first-child {
+    text-align: center;
+}
+
+#tbl tr > td:first-child > input {
+    width: 18px;
+    height: 18px;
+}
+
+#tbl tr > th:first-child > input {
+    width: 18px;
+    height: 18px;
+}
+
+#tbl > tbody > tr:nth-of-type(even) {
+    background-color: #f8f9fa;
+}
+
+#tbl > tbody > tr:hover {
+    background-color: #d2f4ea;
+}
+
+#tbl > thead > tr {
+    background-color: #f8f9fa;
+}
+
+/*分页条样式*/
+.paginate {
+    margin-top: 8px;
+}
+
+.paginate > ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.paginate > ul > li {
+    float: left;
+    border: 1px solid #ccc;
+    padding: 5px 10px;
+    margin-right: 5px;
+}
+
+.paginate > ul::after {
+    content: "";
+    clear: both;
+    display: block;
+    width: 0;
+}
+
+.paginate > ul > li > a {
+    text-decoration: none;
+}
+
+.paginate > ul > li.current {
+    background-color: #16b777;
+    border-color: transparent;
+}
+
+.paginate > ul > li.current > a {
+    color: #fff;
+}
+
+/*条件搜索区域*/
+.search {
+    padding-bottom: 8px;
+}
+
+.search > form {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.search > form > div > label:first-child {
+    display: inline-block;
+    width: 80px;
+    text-align: right;
+}
+
+.search input, .search select {
+    outline: none;
+    border: 1px solid #ccc;
+    padding: 8px 0 8px 10px;
+    margin: 0;
+    width: 190px;
+    box-sizing: border-box;
+}
+
+.search button {
+    outline: none;
+    border-color: transparent;
+    background-color: #eee;
+    padding: 5px 10px;
+}
+
+.search #search-btn {
+    background-color: #1e9fff;
+    color: #fff;
+}
+
+/*按钮区*/
+.action {
+    padding-bottom: 8px;
+    flex-shrink: 0;
+}
+
+.action > div {
+    float: left;
+    margin-right: 8px;
+}
+
+.action::after {
+    content: "";
+    display: block;
+    clear: both;
+    width: 0;
+}
+
+.action > div > button {
+    outline: none;
+    background-color: #eee;
+    border: 1px solid #ccc;
+    padding: 6px 16px;
+}
+
+.action > div > button#del-btn {
+    background-color: #e35d6a;
+    color: #fff;
+    border-color: transparent;
+}

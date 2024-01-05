@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.situ.lession1226.dao.DocumentDAO">
+
+    <!--手动配置一个结果集映射-->
+    <resultMap id="DocumentMap" type="Document">
+        <!--主键-->
+        <id property="documentId" column="document_id"/>
+        <result property="title" column="title"/>
+        <result property="content" column="content"/>
+        <result property="createdAt" column="created_at"/>
+        <result property="updatedAt" column="updated_at"/>
+        <result property="createdBy" column="created_by"/>
+
+        <!--配置一对一关联查询-->
+<!--        <association property="classEntity" column="class_id"-->
+<!--                     select="com.situ.lession1226.dao.ClassDAO.findById"/>-->
+    </resultMap>
+
+    <!--定义sql片段-->
+    <sql id="Columns">
+        document_id,title,content,created_at,updated_at,created_by
+    </sql>
+
+    <!--查询全部学生-->
+    <select id="findAll" resultMap="DocumentMap">
+        select
+        <include refid="Columns"/>
+        from file_document
+        <where>
+            <if test="title!=null and title!=''">
+                <bind name="titleLike" value="'%'+title+'%'"/>
+                and title like #{titleLike}
+            </if>
+            <if test="content!=null and content!=''">
+                and content = #{content}
+            </if>
+            <if test="createdAt!=null and createdAt!=''">
+                and created_at = #{createdAt}
+            </if>
+            <if test="updatedAt!=null and updatedAt!=''">
+                and updated_at = #{updatedAt}
+            </if>
+            <if test="createdBy!=null and createdBy!=''">
+                and created_by = #{createdBy}
+            </if>
+<!--            <if test="classEntity!=null and classEntity.id!=null">-->
+<!--                and class_id = #{classEntity.id}-->
+<!--            </if>-->
+        </where>
+    </select>
+
+    <!--根据主键查询唯一文件-->
+    <select id="findById" resultMap="DocumentMap">
+        select
+        <include refid="Columns"/>
+        from file_document
+        where document_id = #{documentId}
+    </select>
+
+    <!--根据主键批量删除-->
+    <delete id="deleteByIds">
+        delete from file_document where document_id in
+        <foreach collection="ids" open="(" close=")" separator="," item="id">
+            #{documentId}
+        </foreach>
+    </delete>
+
+    <!--保存文件信息-->
+    <insert id="save">
+        insert into file_document (title, content, created_at, updated_at, created_by)
+        values (#{title},
+                #{content},
+                #{createdAt},
+                #{updatedAt},
+                #{createdBy})
+
+    </insert>
+
+    <!--修改学生信息，部分修改-->
+    <update id="update">
+        update file_document
+        <set>
+            <if test="title!=null and title!=''">
+                and title = #{title}
+            </if>
+            <if test="content!=null and content!=''">
+                and content = #{content}
+            </if>
+            <if test="createdAt!=null and createdAt!=''">
+                and created_at = #{createdAt}
+            </if>
+            <if test="updatedAt!=null and updatedAt!=''">
+                and updated_at = #{updatedAt}
+            </if>
+            <if test="createdBy!=null and createdBy!=''">
+                and created_by = #{createdBy}
+            </if>
+<!--            <if test="classEntity!=null and classEntity.id!=null">-->
+<!--                class_id = #{classEntity.id}-->
+<!--            </if>-->
+        </set>
+        where document_id = #{documentId}
+    </update>
+</mapper>

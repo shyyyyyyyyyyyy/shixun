@@ -1,0 +1,112 @@
+html, body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    height: 75px;
+    background: #aad7f6 url("header.png") no-repeat left center;
+    background-size: auto 100%;
+    flex-shrink: 0;
+    position: relative;
+}
+
+header > .logout {
+    position: absolute;
+    right: 20px;
+    top: 30px;
+}
+
+.body {
+    flex-grow: 1;
+    flex-shrink: 1;
+
+    display: flex;
+    flex-direction: row;
+}
+
+/*左侧功能导航栏*/
+.body > aside {
+    width: 200px;
+    background-color: #2a2a2a;
+    flex-shrink: 0;
+}
+
+/*右侧数据显示区*/
+.body > .main {
+    height: 100%;
+    flex-grow: 1;
+    flex-shrink: 1;
+    background-color: #fff;
+}
+
+.nav {
+    color: #fff;
+}
+
+.nav > div:first-child {
+    text-align: center;
+    padding: 8px;
+    font-size: 16px;
+}
+
+.nav > ul > li > a {
+    display: inline-block;
+    padding: 10px 0;
+    color: #fff;
+    width: 100%;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.nav > ul > li:hover {
+    background-color: #16b777;
+}
+
+.nav > ul > li > a.active {
+    background-color: #f39b12;
+}
+
+.layui-tab {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    box-sizing: border-box;
+    padding: 8px 8px 0 8px;
+}
+
+.layui-tab-content {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: calc(100% - 41px);
+}
+
+.layui-tab-item {
+    width: 100%;
+    height: 100%;
+}
+
+.layui-tab-item > iframe {
+    outline: none;
+    border: none;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+}
+
+footer {
+    height: 40px;
+    background-color: #eee;
+    flex-shrink: 0;
+}
+
+footer > div {
+    height: 100%;
+    line-height: 40px;
+    text-align: center;
+}

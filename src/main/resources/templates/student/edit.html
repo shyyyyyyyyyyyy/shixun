@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>修改学生</title>
+    <link rel="stylesheet" th:href="@{/public/lib/layui/css/layui.css}">
+    <link rel="stylesheet" th:href="@{/student/add.css}">
+    <script th:src="@{/public/lib/jquery/jquery-3.7.1.min.js}"></script>
+    <script th:src="@{/public/lib/layui/layui.js}"></script>
+
+    <!--thymeleaf语法-->
+    <script th:inline="javascript">
+        const error = /*[[${error}]]*/"";
+        const stu = /*[[${stu}]]*/{};
+    </script>
+
+    <script th:src="@{/student/edit.js}"></script>
+</head>
+<body>
+<div>
+    <form id="student-form" action="">
+        <div>
+            <label for="stuId">学号：</label>
+            <input type="text" id="stuId"
+                   autocomplete="off" placeholder="请输入学号" th:value="${stu?.stuId}">
+        </div>
+
+        <div>
+            <label for="name">姓名：</label>
+            <input type="text" id="name"
+                   autocomplete="off" placeholder="请输入姓名" th:value="${stu?.name}">
+        </div>
+
+        <div>
+            <label for="pinyin">拼音：</label>
+            <input type="text" id="pinyin"
+                   autocomplete="off" placeholder="请输入拼音" th:value="${stu?.pinyin}">
+        </div>
+
+        <div class="sex-wrapper">
+            <label for="male">性别：</label>
+            <input type="radio" id="male" name="sex" value="男" checked>
+            <label for="male">男</label>&nbsp;&nbsp;
+            <input type="radio" id="female" name="sex" value="女">
+            <label for="female">女</label>
+        </div>
+
+        <div>
+            <label for="birthday">出生日期：</label>
+            <input type="text" id="birthday" autocomplete="off"
+                   placeholder="请输入出生日期，格式:2000-02-05" readonly th:value="${stu?.birthday}">
+        </div>
+
+        <div>
+            <label for="phone">手机号：</label>
+            <input type="text" id="phone"
+                   autocomplete="off" placeholder="请输入手机号" th:value="${stu?.phone}">
+        </div>
+
+        <div>
+            <label for="email">电子邮箱：</label>
+            <input type="text" id="email"
+                   autocomplete="off" placeholder="请输入电子邮箱" th:value="${stu?.email}">
+        </div>
+
+        <div>
+            <label for="wechat">微信号：</label>
+            <input type="text" id="wechat"
+                   autocomplete="off" placeholder="请输入微信号" th:value="${stu?.wechat}">
+        </div>
+
+        <div>
+            <label for="classId">所在班级：</label>
+            <select id="classId"></select>
+        </div>
+
+    </form>
+</div>
+</body>
+</html>

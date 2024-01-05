@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.situ.lession1226.dao.ClassDAO">
+    <!--指定二级缓存的实现类-->
+    <cache type="org.mybatis.caches.caffeine.CaffeineCache"/>
+
+    <!--手动映射-->
+    <resultMap id="ClassMap" type="ClassEntity">
+        <id property="id" column="id"/>
+        <result property="name" column="class_name"/>
+        <result property="beginTime" column="begin_time"/>
+        <result property="endTime" column="end_time"/>
+        <result property="description" column="description"/>
+
+        <!--一对一关联查询。由于多数查询使用了二级缓存，所以此关联查询不能实时反映数据-->
+        <!--需要在前端使用ajax来实现-->
+        <association property="total" column="id" select="findStudentCount"/>
+    </resultMap>
+
+    <!--根据所有班级-->
+    <select id="findAll" resultMap="ClassMap" useCache="true">
+        select id, class_name, begin_time, end_time, description
+        from t_class
+    </select>
+
+    <!--根据班级编号查询一个班级-->
+    <select id="findById" resultMap="ClassMap" useCache="true">
+        select id, class_name, begin_time, end_time, description
+        from t_class
+        where id = #{id}
+    </select>
+
+    <!--查询所有班级名称。注：仅需要获取编号和名称即可-->
+    <select id="findAllNames" resultType="ClassEntity" useCache="true">
+        select id, class_name as `name`
+        from t_class
+        order by id
+    </select>
+
+    <!--统计班级的人数，此SQL也可以定义到StudentDAO.xml中，不使用缓存-->
+    <select id="findStudentCount" resultType="java.lang.Integer">
+        select count(id)
+        from t_student
+        where class_id = #{id}
+    </select>
+</mapper>
